@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    dd("maangas");
-    return view('welcome');
-});
+Route::get('/users', [AdminController::class, "users"]);
+Route::get('/user', [AdminController::class, "createUser"]);
+Route::post('/user', [AdminController::class, "storeUser"]);
