@@ -42,6 +42,6 @@ class AdminController extends Controller
     }
 
     public function books(Request $request) {
-        dd("I love you Ellaine");
+        dd("books");
     }
 }
