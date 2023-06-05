@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 
+use App\Models\Book;
+
 class AdminController extends Controller
 {
     public function users(Request $request) {
@@ -42,6 +44,38 @@ class AdminController extends Controller
     }
 
     public function books(Request $request) {
-        dd("books");
+        $books = Book::get();
+
+        $data = [
+            'books' => $books
+        ];
+
+        return view('books', $data);
+    }
+
+    public function addBook(Request $request) {
+
+        return view('add-book');
+
+    }
+
+    public function storeBook(Request $request) {
+        $title = $request->get('title');
+        $description = $request->get('description');
+        $author = $request->get('author');
+        $cover = $request->get('cover');
+        $year = $request->get('year');
+        $url = $request->get('url');
+
+        Book::create([
+            'title' => $title,
+            'description' => $description,
+            'author' => $author,
+            'cover' => $cover,
+            'year' => $year,
+            'url' => $url,
+        ]);
+
+        return redirect('/books');
     }
 }

@@ -19,3 +19,5 @@ Route::get('/users', [AdminController::class, "users"]);
 Route::get('/user', [AdminController::class, "createUser"]);
 Route::post('/user', [AdminController::class, "storeUser"]);
 Route::get('/books', [AdminController::class, "books"]);
+Route::get('/book', [AdminController::class, "addBook"]);
+Route::post('/book', [AdminController::class, "storeBook"]);
