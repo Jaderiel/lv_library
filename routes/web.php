@@ -18,3 +18,4 @@ use App\Http\Controllers\AdminController;
 Route::get('/users', [AdminController::class, "users"]);
 Route::get('/user', [AdminController::class, "createUser"]);
 Route::post('/user', [AdminController::class, "storeUser"]);
+Route::get('/books', [AdminController::class, "books"]);

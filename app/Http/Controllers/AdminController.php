@@ -40,4 +40,8 @@ class AdminController extends Controller
 
         return redirect('/users');
     }
+
+    public function books(Request $request) {
+        dd("I love you Ellaine");
+    }
 }
