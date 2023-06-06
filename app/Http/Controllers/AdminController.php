@@ -8,6 +8,8 @@ use App\Models\User;
 
 use App\Models\Book;
 
+use App\Models\Note;
+
 class AdminController extends Controller
 {
     public function users(Request $request) {
@@ -78,4 +80,35 @@ class AdminController extends Controller
 
         return redirect('/books');
     }
+
+    public function notes(Request $request) {
+        $notes = Note::get();
+
+        $data = [
+            'notes' => $notes
+        ];
+
+        return view('notes', $data);
+    }
+
+    public function addNote(Request $request) {
+
+        return view('add-note');
+
+    }
+
+    public function storeNote(Request $request) {
+        $user_id = $request->get('user_id');
+        $title = $request->get('title');
+        $content = $request->get('content');
+
+        Note::create([
+            'user_id' => $user_id,
+            'title' => $title,
+            'content' => $content,
+        ]);
+
+        return redirect('/notes');
+    }
+
 }

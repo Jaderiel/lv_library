@@ -21,3 +21,6 @@ Route::post('/user', [AdminController::class, "storeUser"]);
 Route::get('/books', [AdminController::class, "books"]);
 Route::get('/book', [AdminController::class, "addBook"]);
 Route::post('/book', [AdminController::class, "storeBook"]);
+Route::get('/notes', [AdminController::class, "notes"]);
+Route::get('/note', [AdminController::class, "addNote"]);
+Route::post('/note', [AdminController::class, "storeNote"]);
