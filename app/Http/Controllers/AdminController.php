@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 use App\Models\User;
 
@@ -12,12 +14,39 @@ use App\Models\Note;
 
 class AdminController extends Controller
 {
+
+    public function login(Request $request) {
+        $email = $request->get('email');
+        $password = $request->get('password');
+
+        $user = User::where('email', $email)->first();
+        if (!$user) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+        if (!Hash::check($password, $user->password)) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+        $currentDate = Carbon::now();
+        $token = Hash::make($user->id . $currentDate->toDateTimeString());
+
+        $user->token = $token;
+        $user->save();
+
+        return response()->json(['data' => $user]);
+    }
+
     public function users(Request $request) {
         $users = User::get();
 
         $data = [
             'users' => $users
         ];
+
+        if ($request->get("is_mobile_app")) {
+            return response()->json(['data' => $users]);
+        }
 
         return view('users', $data);
     }
@@ -36,7 +65,7 @@ class AdminController extends Controller
 
         User::create([
             'email' => $email,
-            'password' => $password,
+            'password' =>  Hash::make($password),
             'firstname' => $firstname,
             'lastname' => $lastname,
             'course_year' => $courseYear,
@@ -51,6 +80,10 @@ class AdminController extends Controller
         $data = [
             'books' => $books
         ];
+
+        if ($request->get("is_mobile_app")) {
+            return response()->json(['data' => $books]);
+        }
 
         return view('books', $data);
     }

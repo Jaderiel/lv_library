@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Middleware\AppAuth;
+use App\Http\Middleware\AppUserAuth;
+
+use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware([AppAuth::class])->group(function () {
+    Route::get('/login', [AdminController::class, "login"]);
+
+    Route::middleware([AppUserAuth::class])->group(function () {
+        Route::get('/users', [AdminController::class, "users"]);
+        Route::get('/books', [AdminController::class, "books"]);
+    });
 });
