@@ -34,7 +34,7 @@
         <tr>
           <td>Cover</td>
           <td>
-            <input name="cover" type="file" placeholder="Enter Cover" class="form-control"/>
+            <input name="cover" type="text" placeholder="Enter Cover" class="form-control"/>
           </td>
         </tr>
 
