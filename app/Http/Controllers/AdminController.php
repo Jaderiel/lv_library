@@ -121,6 +121,10 @@ class AdminController extends Controller
             'notes' => $notes
         ];
 
+        if ($request->get("is_mobile_app")) {
+            return response()->json(['data' => $notes]);
+        }
+
         return view('notes', $data);
     }
 
