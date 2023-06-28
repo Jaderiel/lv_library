@@ -190,6 +190,12 @@ class AdminController extends Controller
 
 	return response()->json($note);
 }
+public function getUserNotes($id)
+{
+	$notes = Note::where('user_id', '=', $id)->get();
+
+	return response()->json($notes);
+}
 
 
 
