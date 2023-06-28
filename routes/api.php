@@ -20,7 +20,8 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::middleware([AppAuth::class])->group(function () {
-    Route::get('/login', [AdminController::class, "login"]);
+    // Route::get('/login', [AdminController::class, "login"]);
+    // Route::post('/dynamicLogin', [AdminController::class, "dynamicLogin"]);
 
     Route::middleware([AppUserAuth::class])->group(function () {
         Route::get('/users', [AdminController::class, "users"]);
@@ -28,3 +29,5 @@ Route::middleware([AppAuth::class])->group(function () {
         Route::get('/notes', [AdminController::class, "notes"]);
     });
 });
+
+Route::post('/dynamicLogin', [AdminController::class, "dynamicLogin"]);

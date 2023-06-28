@@ -37,6 +37,28 @@ class AdminController extends Controller
         return response()->json(['data' => $user]);
     }
 
+    public function dynamicLogin(Request $request) {
+        $email = $request->email;
+        $password = $request->password;
+
+        $user = User::where('email', $email)->first();
+        if (!$user) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+        if (!Hash::check($password, $user->password)) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+        $currentDate = Carbon::now();
+        $token = Hash::make($user->id . $currentDate->toDateTimeString());
+
+        $user->token = $token;
+        $user->save();
+
+        return response()->json(['data' => $user]);
+    }
+
     public function users(Request $request) {
         $users = User::get();
 
