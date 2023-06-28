@@ -31,5 +31,5 @@ Route::middleware([AppAuth::class])->group(function () {
     });
 });
 
-Route::post('/dynamicLogin', [AdminController::class, "dynamicLogin"]);
+Route::post('/dynamicLogin', [AdminController::class, "login"]);
 Route::post('/addnotes/{id}', [AdminController::class, 'userAddNote']);
