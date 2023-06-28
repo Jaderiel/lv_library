@@ -174,7 +174,6 @@ class AdminController extends Controller
     public function userAddNote(Request $request, $id)
 {
 	$request->validate([
-		'user_id' => 'required|exists:users,id',
 		'title' => 'required',
 		'content' => 'required',
 	]);
