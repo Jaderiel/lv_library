@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+
 use Carbon\Carbon;
 
 use App\Models\User;
@@ -190,9 +192,10 @@ class AdminController extends Controller
 
 	return response()->json($note);
 }
-public function getUserNotes($id)
+    public function getUserNotes($id)
 {
 	$notes = Note::where('user_id', '=', $id)->get();
+    Log::info('Retrieved notes:', $notes);
 
 	return response()->json($notes);
 }
