@@ -38,3 +38,4 @@ Route::middleware([AppAuth::class])->group(function () {
 Route::post('/dynamicLogin', [AdminController::class, "login"]);
 Route::post('/addnotes/{id}', [AdminController::class, 'userAddNote']);
 Route::get('/getUserNotes/{id}', [AdminController::class, 'getUserNotes']);
+Route::get('/getUserNote/{id}', [AdminController::class, 'getUserNote']);
