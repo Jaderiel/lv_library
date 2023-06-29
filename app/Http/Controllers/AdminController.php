@@ -200,8 +200,7 @@ class AdminController extends Controller
   }
 
   public function getUserNote($id) {
-	$note = Note::where('id', $id);
-
+    $note = Note::where('id', $id)->first();
 	return response()->json(['data' => $note]);
 }
 
