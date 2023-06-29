@@ -204,7 +204,16 @@ class AdminController extends Controller
 	return response()->json(['data' => $note]);
 }
 
-    
+public function updateNote(Request $request, $id) {
+    $notes = Note::findOrFail($id);
+
+    $notes->title = $request->input('title');
+    $notes->content = $request->input('content');
+
+    $notes->save();
+
+    return response()->json(['data' => $notes]);
+}
 
 }
 
