@@ -197,8 +197,7 @@ class AdminController extends Controller
 	$notes = Note::where('user_id', '=', $id)->get();
     Log::info('Retrieved notes:', $notes);
 
-	return response()->json($notes);
-}
+    return response()->json(['notes'=>$notes]);}
 
 
 
