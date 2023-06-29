@@ -24,12 +24,16 @@ Route::middleware([AppAuth::class])->group(function () {
     // Route::post('/dynamicLogin', [AdminController::class, "dynamicLogin"]);
 
     Route::middleware([AppUserAuth::class])->group(function () {
-        Route::get('/users', [AdminController::class, "users"]);
-        Route::get('/books', [AdminController::class, "books"]);
-        Route::get('/notes', [AdminController::class, "notes"]);
+        // Route::get('/users', [AdminController::class, "users"]);
+        // Route::get('/books', [AdminController::class, "books"]);
+        // Route::get('/notes', [AdminController::class, "notes"]);
         
     });
 });
+
+Route::get('/users', [AdminController::class, "users"]);
+Route::get('/books', [AdminController::class, "books"]);
+Route::get('/notes', [AdminController::class, "notes"]);
 
 Route::post('/dynamicLogin', [AdminController::class, "login"]);
 Route::post('/addnotes/{id}', [AdminController::class, 'userAddNote']);
