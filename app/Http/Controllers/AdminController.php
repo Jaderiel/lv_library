@@ -153,11 +153,27 @@ class AdminController extends Controller
         return view('notes', $data);
     }
 
-    public function addNote(Request $request) {
+    public function addNote(Request $request, $id)
+{
+    // Assuming you have a Note model
 
-        return view('add-note');
+    // Validate the request data
+    $validatedData = $request->validate([
+        'title' => 'required',
+        'content' => 'required',
+    ]);
 
-    }
+    // Create a new note
+    $note = new Note();
+    $note->title = $validatedData['title'];
+    $note->content = $validatedData['content'];
+    // Assuming there's a user_id field in the Note model
+    $note->user_id = $id;
+    $note->save();
+
+    // Return a response indicating success
+    return response()->json(['message' => 'Note added successfully']);
+}
 
     public function storeNote(Request $request) {
         $user_id = $request->get('user_id');
