@@ -216,6 +216,20 @@ public function updateNote(Request $request, $id) {
     return response()->json(['data' => $notes]);
 }
 
+    public function getBooks()
+    {
+    $books = Book::get();
+
+    return response()->json($books);
+    }
+
+    public function getBookById($id)
+        {
+        $book = Book::where('id', $id)->first();
+
+        return response()->json($book);
+        }
+
 }
 
 

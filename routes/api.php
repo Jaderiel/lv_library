@@ -40,3 +40,5 @@ Route::post('/addnotes/{id}', [AdminController::class, 'userAddNote']);
 Route::get('/getUserNotes/{id}', [AdminController::class, 'getUserNotes']);
 Route::get('/getUserNote/{id}', [AdminController::class, 'getUserNote']);
 Route::put('/updateNote/{id}', [AdminController::class, "updateNote"]);
+Route::get('/getBooks', [AdminController::class, 'getBooks']);
+Route::get('/getBookById/{id}', [AdminController::class, 'getBookById']);
